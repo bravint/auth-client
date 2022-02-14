@@ -51,7 +51,9 @@ export default function App() {
 
         const data = await postLogin(form, 'login');
 
-        setToken(data);   
+        localStorage.setItem('userToken', data)
+
+        setToken(data);
     };
 
     const handleChange = (event) => {

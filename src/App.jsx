@@ -28,14 +28,16 @@ export default function App() {
     };
 
     const postLogin = async (form, endpoint) => {
-        try{
-            const response = await fetch(`http://localhost:4000/${endpoint}`, fetchConfig(form));
+        try {
+            const response = await fetch(
+                `http://localhost:4000/${endpoint}`,
+                fetchConfig(form)
+            );
 
             return await response.json();
-        } catch(error) {
-            console.log(error)
+        } catch (error) {
+            console.log(error);
         }
-
     };
 
     const handleSubmitRegister = async (event) => {
@@ -51,7 +53,7 @@ export default function App() {
 
         const data = await postLogin(form, 'login');
 
-        localStorage.setItem('userToken', data)
+        localStorage.setItem('userToken', data);
 
         setToken(data);
     };
@@ -73,15 +75,39 @@ export default function App() {
                 <>
                     <h1>Register</h1>
                     <form id="register" onSubmit={handleSubmitRegister}>
-                        <input type="text" name="username" placeholder="User Name" onChange={handleChange} />
-                        <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="User Name"
+                            onChange={handleChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={handleChange}
+                            required
+                        />
                         <button type="submit">Login</button>
                     </form>
                     <br></br>
                     <h1>Login</h1>
                     <form id="login" onSubmit={handleSubmitLogin}>
-                        <input type="text" name="username" placeholder="User Name" onChange={handleChange} />
-                        <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="User Name"
+                            onChange={handleChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={handleChange}
+                            required
+                        />
                         <button type="submit">Login</button>
                     </form>
                 </>
@@ -98,10 +124,8 @@ export default function App() {
             {token && (
                 <>
                     <div>
-                        <h3>JWT</h3>
                         <p>{token}</p>
                     </div>
-                    <button onClick={handleClickLogOut}>Log-out</button>
                 </>
             )}
         </div>
